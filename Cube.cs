@@ -21,17 +21,12 @@ public class Cube : MonoBehaviour
 
     private void OnMouseUpAsButton()
     {
-        if (IsSplit() == true)
+        if (IsSplit())
         {
             HalfBaseStats();
             Splited?.Invoke();
         }
 
-        SelfDestroy();
-    }
-
-    private void SelfDestroy()
-    {
         Destroy(gameObject);
     }
 
@@ -40,10 +35,7 @@ public class Cube : MonoBehaviour
         int maxChance = 100;
         int chance = UnityEngine.Random.Range(1, maxChance);
 
-        if (chance < _baseChanseSeparation)
-            return true;
-        else
-            return false;
+        return chance < _baseChanseSeparation;
     }
 
     private void HalfBaseStats()
