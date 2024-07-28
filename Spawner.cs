@@ -17,10 +17,7 @@ public class Spawner : MonoBehaviour
     private void CreateCubes()
     {
         for (int i = 0; i < GetRandomQuantityCubes(); i++)
-        {
             GameObject newCube = Instantiate(gameObject, transform.position, Quaternion.identity);
-            print(_cube.BaseChanseSeparation());
-        }
     }
 
     private int GetRandomQuantityCubes()
