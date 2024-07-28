@@ -7,7 +7,7 @@ public class Spawner : MonoBehaviour
     [SerializeField] private Cube _cube;
     [SerializeField] private float _force;
 
-    public event Action<List<Rigidbody>> Splited;
+    public event Action<List<Rigidbody>> Created;
 
     private void OnEnable()
     {
@@ -33,7 +33,7 @@ public class Spawner : MonoBehaviour
             cubes.Add(rigidBody);
         }
 
-        Splited?.Invoke(cubes);
+        Created?.Invoke(cubes);
     }
 
     private int GetRandomQuantityCubes()

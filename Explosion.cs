@@ -10,15 +10,15 @@ public class Explosion : MonoBehaviour
 
     private void OnEnable()
     {
-        _spawner.Splited += ScatterCteatedCubes;
+        _spawner.Created += Scatter;
     }
 
     private void OnDisable()
     {
-        _spawner.Splited -= ScatterCteatedCubes;
+        _spawner.Created -= Scatter;
     }
 
-    private void ScatterCteatedCubes(List<Rigidbody>cubes)
+    private void Scatter(List<Rigidbody>cubes)
     {
         foreach (Rigidbody rb in cubes)
             rb.AddExplosionForce(_force, transform.position, _radius);
