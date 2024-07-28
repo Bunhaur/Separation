@@ -1,9 +1,13 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
     [SerializeField] private Cube _cube;
     [SerializeField] private float _force;
+
+    public event Action<List<Rigidbody>> Splited;
 
     private void OnEnable()
     {
@@ -18,12 +22,18 @@ public class Spawner : MonoBehaviour
     private void CreateCubes()
     {
         GameObject newCube;
+        Rigidbody rigidBody;
+
+        List<Rigidbody> cubes = new List<Rigidbody>();
 
         for (int i = 0; i < GetRandomQuantityCubes(); i++)
         {
             newCube = Instantiate(gameObject, transform.position, Quaternion.identity);
-            Scatter(newCube);
+            rigidBody = newCube.GetComponent<Rigidbody>();
+            cubes.Add(rigidBody);
         }
+
+        Splited?.Invoke(cubes);
     }
 
     private int GetRandomQuantityCubes()
@@ -31,17 +41,6 @@ public class Spawner : MonoBehaviour
         int min = 2;
         int max = 6;
 
-        return Random.Range(min, max);
-    }
-
-    private void Scatter(GameObject cube)
-    {
-        Rigidbody rigidBody;
-        Vector3 randomDirection;
-
-        randomDirection = Random.insideUnitSphere;
-
-        rigidBody = cube.GetComponent<Rigidbody>();
-        rigidBody.AddForce(randomDirection * _force, ForceMode.Impulse);
+        return UnityEngine.Random.Range(min, max);
     }
 }
