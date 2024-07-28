@@ -7,7 +7,6 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     [SerializeField] private Cube _cube;
-    [SerializeField] private float _force;
 
     public event Action<List<Rigidbody>> Created;
 
