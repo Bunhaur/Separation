@@ -2,8 +2,6 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
-
 public class Spawner : MonoBehaviour
 {
     [SerializeField] private Cube _cube;
@@ -22,14 +20,14 @@ public class Spawner : MonoBehaviour
 
     private void CreateCubes()
     {
-        GameObject newCube;
+        Cube newCube;
         Rigidbody rigidBody;
 
         List<Rigidbody> cubes = new List<Rigidbody>();
 
         for (int i = 0; i < GetRandomQuantityCubes(); i++)
         {
-            newCube = Instantiate(gameObject, transform.position, Quaternion.identity);
+            newCube = Instantiate(_cube, transform.position, Quaternion.identity);
             rigidBody = newCube.GetComponent<Rigidbody>();
             cubes.Add(rigidBody);
         }
@@ -42,6 +40,6 @@ public class Spawner : MonoBehaviour
         int min = 2;
         int max = 6;
 
-        return UnityEngine.Random.Range(min, max);
+        return new System.Random().Next(min, max + 1);
     }
 }

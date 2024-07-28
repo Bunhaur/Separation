@@ -20,7 +20,7 @@ public class Explosion : MonoBehaviour
 
     private void Scatter(List<Rigidbody>cubes)
     {
-        foreach (Rigidbody rb in cubes)
-            rb.AddExplosionForce(_force, transform.position, _radius);
+        foreach (Rigidbody cube in cubes)
+            cube.AddExplosionForce(_force, transform.position, _radius);
     }
 }
