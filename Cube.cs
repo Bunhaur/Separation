@@ -29,8 +29,6 @@ public class Cube : MonoBehaviour
         SelfDestroy();
     }
 
-    public int BaseChanseSeparation() => _baseChanseSeparation;
-
     private void SelfDestroy()
     {
         Destroy(gameObject);
