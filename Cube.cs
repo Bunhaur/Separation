@@ -15,7 +15,6 @@ public class Cube : MonoBehaviour
     private void Awake()
     {
         _meshRenderer = GetComponent<MeshRenderer>();
-
         _meshRenderer.material.color = UnityEngine.Random.ColorHSV();
     }
 
